@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'function.php';
 if (isset($_POST['btn_register'])){
     // validate
@@ -46,6 +47,8 @@ if (isset($_POST['btn_register'])){
     }
     //
     if (empty($error)){
+        $_SESSION['user'] = $user;
+        $_SESSION['pass'] = $pass;
 //        echo "Tên đăng nhập: {$user} <br> Email: {$email} <br> Mật khẩu: {$pass} <br> Address: {$add}";
         header("location:trangchu.php");
     }
