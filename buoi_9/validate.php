@@ -7,7 +7,12 @@ if (isset($_POST['btn_register'])){
     if (empty($_POST['user'])){
         $error['user']= 'bạn cần đăng nhập';
     } else{
-        $user = $_POST['user'];
+        $pattem = "/^[A-Z,a-z0-9_]{6,32}$/";
+        if (!preg_match($pattem, $_POST['user'])){
+            $error['user'] = 'Nhập không đúng định dạng';
+        } else{
+            $user = $_POST['user'];
+        }
     }
     // kiểm tra pass
     if (empty($_POST['pass'])){
@@ -19,6 +24,7 @@ if (isset($_POST['btn_register'])){
     if (empty($_POST['email'])){
         $error['email']= 'bạn cần nhập email';
     } else{
+
         $email = $_POST['email'];
     }
     // kiểm tra add
@@ -40,7 +46,8 @@ if (isset($_POST['btn_register'])){
     }
     //
     if (empty($error)){
-        echo "Tên đăng nhập: {$user} <br> Email: {$email} <br> Mật khẩu: {$pass} <br> Address: {$add}";
+//        echo "Tên đăng nhập: {$user} <br> Email: {$email} <br> Mật khẩu: {$pass} <br> Address: {$add}";
+        header("location:trangchu.php");
     }
 //    else{
 //        echo 'lỗi: <br>';
